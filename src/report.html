@@ -68,7 +68,7 @@
                     <div id="smallmap" class="pull-right"></div>
                 </div>
             </div>
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-xs-12 text-center">
                     <table class="metric-box">
                         <tbody>
@@ -109,15 +109,15 @@
                         </tbody>
                     </table>
                 </div>
-            </div> -->
+            </div>
         </div>
 
         <!-- Large Map -->
-        <!-- <div class="page page-category">
+        <div class="page page-category">
             <div class="row text-center">
                 <div id="largemap"></div>
             </div>
-        </div> -->
+        </div>
 
         <!-- category pages -->
         <div class="category-pages"></div>
@@ -154,11 +154,11 @@
         </div>
     </script>
 	<!-- Underscore row template -->
-    <!-- <script type="text/template" class="template-row">
+    <script type="text/template" class="template-row">
       <tr data-metric="<%= rc.id %>">
           Name (year)
           <td class='text-left label-<%= rc.id %>' data-val="<%= metricConfig[rc.id].title %>">
-              <a target="_blank" href="./?m=<%= rc.id %>&n=<%= theFilter.join(',') %>"><%= metricConfig[rc.id].title %></a>
+              <a target="_blank" href="./?m=<%= rc.id %>&n=<%= geographyList.join(',') %>"><%= metricConfig[rc.id].title %></a>
             (<%= rc.year %>)
           </td>
           Selected Value
@@ -177,21 +177,21 @@
               <% } %>
           </td>
       </tr>
-    </script> -->
+    </script>
     <!-- Underscore row template -->
     <script type="text/template" class="template-metric">
       <div class="container-fluid">
 		  <div class="row">
 			  <div class="col-md-12">
-				  <h3><a target="_blank" href="./?m=<%= rc.id %>&n=<%= theFilter.join(',') %>"><%= rc.title %></a></h3>
+				  <h3><a target="_blank" href="./?m=<%= rc.id %>&n=<%= geographyList.join(',') %>"><%= rc.title %></a></h3>
 				  <!-- <table class="table table-striped" id="lineChart<%- rc.id %>" border="1" style="width:100%">
   				  	<tr>
 					    <th>Year</th>
-					    <th>Feature Value</th> 
-					    <th>Selection Average</th> 
+					    <th>Feature Value</th>
+					    <th>Selection Average</th>
 					    <th>County Average</th>
 					</tr>
-  				  <% 
+  				  <%
 				  _.each (rc.typeValues,function(v){ %>
 				  	<tr>
 				  		<td><%- v[1] %></td>
@@ -237,7 +237,7 @@
 		  </div>
           <!-- $('.meta-about').html(
                 data.substring(GetSubstringIndex(data, '</h3>', 2) + 5, GetSubstringIndex(data, '<h3', 3))
-            ); 
+            );
             function GetSubstringIndex(str, substring, n) {
 			    var times = 0, index = null;
 			    while (times < n && index !== -1) {
@@ -331,24 +331,23 @@
     </script> -->
 
     <!-- category chart template - health -->
-    <!-- <script type="text/template" id="template-vis-environment">
+    <script type="text/template" id="template-vis-environment">
         <div class="col-xs-12 text-center vis vis-horizontal">
             <h4>Environment</h4>
             <canvas id="chart-environment-1" class="chart-bar" data-chart="m7" data-labels="Commuting 30 minutes or more" width="550" height="180"></canvas>
             <div id="chart-environment-1-legend" class="text-center"></div>
         </div>
-    </script> -->
+    </script>
 
     <!-- category chart template - housing -->
-    <!-- <script type="text/template" id="template-vis-safety">
+    <script type="text/template" id="template-vis-safety">
         <div class="col-xs-12 text-center vis vis-horizontal">
             <h4>Safety</h4>
             <canvas id="chart-safety-1" class="chart-bar" data-chart="m8" data-labels="Crimes with a violent component" width="550" height="180"></canvas>
             <div id="chart-safety-1-legend" class="text-center"></div>
         </div>
-    </script> -->
+    </script>
 
-    <!-- scripts at the bottom yo -->
     <script src="js/report.js?foo={{cachebuster}}"></script>
 
     <!--   Google Analytics -->

@@ -2,10 +2,10 @@
 
 //searching for other configurable items
 //There are other configurable items that i have found throughout the project that may be of use. I have peppered
-//the applicaiton with the following search terms so that these items may be altered as needed. To find these search 
+//the applicaiton with the following search terms so that these items may be altered as needed. To find these search
 //terms, search the entire project for the following words:
 //1. Quantile Color Breaks - this is where the color scheme for the map quantiles is stored these values are RGB values
-// and are indexed starting a q0 and ending with q4. do not change the number of 'q' values without changing the 
+// and are indexed starting a q0 and ending with q4. do not change the number of 'q' values without changing the
 //'colorbreaks' variable listed in this file below. Always that q0 is the first instance so if colorbreaks = n then
 //the 'q' values should extend from q0 to qn-1.
 
@@ -15,7 +15,7 @@ var gaKey = "UA-47136977-1";
 // Here's where to put what you are calling your neighborhoods. We call them NPA,
 // you might call them NSA or precinct or even something crazy like "neighborhood".
 // Shorter is better lest you run into some unintended wrapping text issues.
-//TODO - set these variables according to selected target layer. 
+//TODO - set these variables according to selected target layer.
 var neighborhoodDescriptor = "Block Group";
 var neighborhoodDefinition = "Census block groups";
 
@@ -37,11 +37,11 @@ var contactConfig = {
 // maximum zoom level, and the starting zoom level, the map center point, and when
 // the base tiles should become visible.
 var mapGeography = {
-        minZoom: 9,
-        maxZoom: 17,
-        defaultZoom: 10,
-        center: [35.988, -78.907]
-    };
+    minZoom: 9,
+    maxZoom: 17,
+    defaultZoom: 10,
+    center: [35.988, -78.907]
+};
 
 // Neighborhoods name in your TopoJSON file. This is usually the name of the shapefile
 // or geojson file you converted from.
@@ -49,11 +49,11 @@ var loadLayer = "census";
 var censusFeatures = "blockgroups";
 var neighborhoodFeatures = "neighborhoods";
 var neighborhoods;
-if (loadLayer == "census"){
-	neighborhoods = censusFeatures;
+if (loadLayer == "census") {
+    neighborhoods = censusFeatures;
 }
-else{
-	neighborhoods = neighborhoodFeatures;
+else {
+    neighborhoods = neighborhoodFeatures;
 }
 var blInitMap = true;
 // If you have an additional data layer in your TopoJSON file, name it here.
@@ -75,7 +75,8 @@ try {
     exports.neighborhoodDescriptor = neighborhoodDescriptor;
     exports.gaKey = gaKey;
 }
-catch(err) {}
+catch (err) {
+}
 
 
 // ***********************************************************
@@ -102,205 +103,205 @@ var censusTOPOJSON = "data/census.topo.json";
 
 
 var activeTOPOJSON;
-if (loadLayer == "census"){
-	activeTOPOJSON = censusTOPOJSON;
+if (loadLayer == "census") {
+    activeTOPOJSON = censusTOPOJSON;
 }
-else{
-	activeTOPOJSON = neighborhoodTOPOJSON;
+else {
+    activeTOPOJSON = neighborhoodTOPOJSON;
 }
 var censusMergeTOPOJSON = "data/merge_cb.json";
 var neighborhoodMergeTOPOJSON = "data/merge_nh.json";
 var activeMergeJSON;
-if (loadLayer == "census"){
-	activeMergeJSON = censusMergeTOPOJSON;
+if (loadLayer == "census") {
+    activeMergeJSON = censusMergeTOPOJSON;
 }
-else{
-	activeMergeJSON = neighborhoodMergeTOPOJSON;
+else {
+    activeMergeJSON = neighborhoodMergeTOPOJSON;
 }
 var censusMetricConfig = {
- "mPOP": {
-  "metric": "POP",
-  "category": "Demographics",
-  "label": "People",
-  "title": "Population",
-  "decimals": 0,
-  "type": "sum"
- },
- "mPOPDENS": {
-  "metric": "POPDENS",
-  "category": "Demographics",
-  "raw_label": "People/Sq Mi",
-  "title": "Population Density",
-  "decimals": 0,
-  "type": "normalize"
- },
- "mPTWHNL": {
-  "metric": "PTWHNL",
-  "category": "Demographics",
-  "suffix": "%",
-  "raw_label": "Percent",
-  "title": "White/Caucasion",
-  "decimals": 0,
-  "type": "normalize"
- },
- "mPTBLKNL": {
-  "metric": "PTBLKNL",
-  "category": "Demographics",
-  "suffix": "%",
-  "raw_label": "Percent",
-  "title": "Black/African American",
-  "decimals": 0,
-  "type": "normalize"
- },
- "mPTASNL": {
-  "metric": "PTASNL",
-  "category": "Demographics",
-  "suffix": "%",
-  "raw_label": "Percent",
-  "title": "Asian",
-  "decimals": 0,
-  "type": "normalize"
- },
- "mPTLAT": {
-  "metric": "PTLAT",
-  "category": "Demographics",
-  "suffix": "%",
-  "raw_label": "People",
-  "title": "Hispanic/Latino",
-  "decimals": 0,
-  "type": "normalize"
- },
- "mPTOTHNL": {
-  "metric": "PTOTHNL",
-  "category": "Demographics",
-  "suffix": "%",
-  "raw_label": "Percent",
-  "title": "Other Race",
-  "decimals": 0,
-  "type": "normalize"
- },
- "mREDIV": {
-  "metric": "REDIV",
-  "category": "Demographics",
-  "title": "Race/Ethnic Diversity",
-  "suffix": "",
-  "raw_label": "",
-  "decimals": 2,
-  "type": "normalize"
- },
- "mMEDAGE": {
-  "metric": "MEDAGE",
-  "accuracy": "true",
-  "category": "Demographics",
-  "title": "Median Age",
-  "raw_label": "years",
-  "decimals": 1,
-  "type": "sum"
- },
- "mBIKEWK": {
-  "metric": "BIKEWK",
-  "accuracy": "true",
-  "category": "Infrastructure and Amenities",
-  "suffix": "%",
-  "raw_label": "Percent",
-  "title": "Commuting to work by Bicycle",
-  "decimals": 1,
-  "type": "normalize"
- },
- "mWLKWK": {
-  "metric": "WLKWK",
-  "accuracy": "true",
-  "category": "Infrastructure and Amenities",
-  "suffix": "%",
-  "raw_label": "Percent",
-  "title": "Commuting to work by Foot",
-  "decimals": 1,
-  "type": "normalize"
- },
- "mWKHOME": {
-  "metric": "WKHOME",
-  "accuracy": "true",
-  "category": "Infrastructure and Amenities",
-  "suffix": "%",
-  "raw_label": "Percent",
-  "title": "Working from Home",
-  "decimals": 1,
-  "type": "normalize"
- },
- "mMHI": {
-  "metric": "MHI",
-  "accuracy": "true",
-  "category": "Economy",
-  "prefix": "$",
-  "raw_label": "Dollars",
-  "title": "Median Household Income",
-  "decimals": 0,
-  "type": "normalize"
- },
- "mPCI": {
-  "metric": "PCI",
-  "accuracy": "true",
-  "category": "Economy",
-  "prefix": "$",
-  "raw_label": "Dollars",
-  "title": "Per Capita Income",
-  "decimals": 0,
-  "type": "normalize"
- },
- "mPCTSSI": {
-  "metric": "PCTSSI",
-  "accuracy": "true",
-  "category": "Economy",
-  "suffix": "%",
-  "raw_label": "",
-  "title": "Supplemental Security Income",
-  "decimals": 1,
-  "type": "normalize"
- },
- "mPCTRENT": {
-  "metric": "PCTRENT",
-  "accuracy": "true",
-  "category": "Housing",
-  "suffix": "%",
-  "raw_label": "",
-  "title": "Renter-Occupied Housing",
-  "decimals": 1,
-  "type": "normalize"
- }
+    "mPOP": {
+        "metric": "POP",
+        "category": "Demographics",
+        "label": "People",
+        "title": "Population",
+        "decimals": 0,
+        "type": "sum"
+    },
+    "mPOPDENS": {
+        "metric": "POPDENS",
+        "category": "Demographics",
+        "raw_label": "People/Sq Mi",
+        "title": "Population Density",
+        "decimals": 0,
+        "type": "normalize"
+    },
+    "mPTWHNL": {
+        "metric": "PTWHNL",
+        "category": "Demographics",
+        "suffix": "%",
+        "raw_label": "Percent",
+        "title": "White/Caucasion",
+        "decimals": 0,
+        "type": "normalize"
+    },
+    "mPTBLKNL": {
+        "metric": "PTBLKNL",
+        "category": "Demographics",
+        "suffix": "%",
+        "raw_label": "Percent",
+        "title": "Black/African American",
+        "decimals": 0,
+        "type": "normalize"
+    },
+    "mPTASNL": {
+        "metric": "PTASNL",
+        "category": "Demographics",
+        "suffix": "%",
+        "raw_label": "Percent",
+        "title": "Asian",
+        "decimals": 0,
+        "type": "normalize"
+    },
+    "mPTLAT": {
+        "metric": "PTLAT",
+        "category": "Demographics",
+        "suffix": "%",
+        "raw_label": "People",
+        "title": "Hispanic/Latino",
+        "decimals": 0,
+        "type": "normalize"
+    },
+    "mPTOTHNL": {
+        "metric": "PTOTHNL",
+        "category": "Demographics",
+        "suffix": "%",
+        "raw_label": "Percent",
+        "title": "Other Race",
+        "decimals": 0,
+        "type": "normalize"
+    },
+    "mREDIV": {
+        "metric": "REDIV",
+        "category": "Demographics",
+        "title": "Race/Ethnic Diversity",
+        "suffix": "",
+        "raw_label": "",
+        "decimals": 2,
+        "type": "normalize"
+    },
+    "mMEDAGE": {
+        "metric": "MEDAGE",
+        "accuracy": "true",
+        "category": "Demographics",
+        "title": "Median Age",
+        "raw_label": "years",
+        "decimals": 1,
+        "type": "sum"
+    },
+    "mBIKEWK": {
+        "metric": "BIKEWK",
+        "accuracy": "true",
+        "category": "Infrastructure and Amenities",
+        "suffix": "%",
+        "raw_label": "Percent",
+        "title": "Commuting to work by Bicycle",
+        "decimals": 1,
+        "type": "normalize"
+    },
+    "mWLKWK": {
+        "metric": "WLKWK",
+        "accuracy": "true",
+        "category": "Infrastructure and Amenities",
+        "suffix": "%",
+        "raw_label": "Percent",
+        "title": "Commuting to work by Foot",
+        "decimals": 1,
+        "type": "normalize"
+    },
+    "mWKHOME": {
+        "metric": "WKHOME",
+        "accuracy": "true",
+        "category": "Infrastructure and Amenities",
+        "suffix": "%",
+        "raw_label": "Percent",
+        "title": "Working from Home",
+        "decimals": 1,
+        "type": "normalize"
+    },
+    "mMHI": {
+        "metric": "MHI",
+        "accuracy": "true",
+        "category": "Economy",
+        "prefix": "$",
+        "raw_label": "Dollars",
+        "title": "Median Household Income",
+        "decimals": 0,
+        "type": "normalize"
+    },
+    "mPCI": {
+        "metric": "PCI",
+        "accuracy": "true",
+        "category": "Economy",
+        "prefix": "$",
+        "raw_label": "Dollars",
+        "title": "Per Capita Income",
+        "decimals": 0,
+        "type": "normalize"
+    },
+    "mPCTSSI": {
+        "metric": "PCTSSI",
+        "accuracy": "true",
+        "category": "Economy",
+        "suffix": "%",
+        "raw_label": "",
+        "title": "Supplemental Security Income",
+        "decimals": 1,
+        "type": "normalize"
+    },
+    "mPCTRENT": {
+        "metric": "PCTRENT",
+        "accuracy": "true",
+        "category": "Housing",
+        "suffix": "%",
+        "raw_label": "",
+        "title": "Renter-Occupied Housing",
+        "decimals": 1,
+        "type": "normalize"
+    }
 };
 var neighborhoodMetricConfig = {
- "mCC45-n": {
-  "metric": "CC45-n",
-  "category": "Education",
-  "suffix": "%",
-  "raw_label": "Percent",
-  "title": "Child Care Centers with 4 or 5 Star Ratings",
-  "decimals": 1,
-  "type": "normalize"
- },
- "mCCC-n": {
-  "metric": "CCC-n",
-  "category": "Education",
-  "title": "Child Care Centers",
-  "decimals": 1,
-  "type": "normalize"
- },
- "mPPSF-n": {
-  "metric": "PPSF-n",
-  "category": "Housing",
-  "prefix": "$",
-  "raw_label": "Dollars",
-  "title": "Residential Sale Price per Square Foot",
-  "decimals": 0,
-  "type": "sum"
- }
+    "mCC45-n": {
+        "metric": "CC45-n",
+        "category": "Education",
+        "suffix": "%",
+        "raw_label": "Percent",
+        "title": "Child Care Centers with 4 or 5 Star Ratings",
+        "decimals": 1,
+        "type": "normalize"
+    },
+    "mCCC-n": {
+        "metric": "CCC-n",
+        "category": "Education",
+        "title": "Child Care Centers",
+        "decimals": 1,
+        "type": "normalize"
+    },
+    "mPPSF-n": {
+        "metric": "PPSF-n",
+        "category": "Housing",
+        "prefix": "$",
+        "raw_label": "Dollars",
+        "title": "Residential Sale Price per Square Foot",
+        "decimals": 0,
+        "type": "sum"
+    }
 };
-//~*~*~*~*~*TODO change metricConfig in the $(".censusRadio").click and $(".neighborhoodsRadio").click functions. 
+
+//~*~*~*~*~*TODO change metricConfig in the $(".censusRadio").click and $(".neighborhoodsRadio").click functions.
 var metricConfig;
-if (loadLayer == "census"){
-	metricConfig = censusMetricConfig;
+if (loadLayer == "census") {
+    metricConfig = censusMetricConfig;
 }
-else{
-	metricConfig = neighborhoodMetricConfig;
+else {
+    metricConfig = neighborhoodMetricConfig;
 }
- 

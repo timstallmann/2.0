@@ -27,7 +27,7 @@ function dataSum(dataSet, key, filter) {
     if (typeof filter !== "undefined" && filter !== null) {
        dataSet = dataFilter(dataSet, filter);
     }
-	
+
     // reduce dataSet to numbers - no nulls
     dataSet = dataStrip(dataSet, key);
 	//console.log(" dataStrip(dataSet, key); = "+dataStrip(dataSet, key));
@@ -62,7 +62,7 @@ function dataMean(dataSet, key, filter) {
             return a + b;
         });
         //console.log("dataSum total / dataSet.length = "+ total +" / "+ dataSet.length);
-            
+
         return total / dataSet.length;
     } else {
         return 'N/A';
@@ -73,7 +73,6 @@ function dataMean(dataSet, key, filter) {
 function dataCrunch(key, filter) {
     var theReturn;
     if (typeof filter === "undefined") { filter = null; }
-	//console.log("metricConfig[model.metricId].type = "+metricConfig[model.metricId].type+" model.metricID = "+model.metricID + " key = "+key+" filter = " + filter + 'case = ' + metricConfig[model.metricId].type + " dataCrunch model.metric = "+JSON.stringify(model.metric));
     switch (metricConfig[model.metricId].type) {
         case "sum":
             theReturn = dataSum(model.metric, key, filter);
